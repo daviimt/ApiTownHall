@@ -2,6 +2,7 @@ package com.example.demo.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,6 +32,14 @@ public class UserService implements UserDetailsService {
 		return new BCryptPasswordEncoder();
 	}
 
+	public com.example.demo.entity.User registerManager(com.example.demo.entity.User user) {
+		user.setPassword(passwordEncoder().encode(user.getPassword()));
+		user.setEnabled(true);
+		user.setRole("ROLE_MANAGER");
+		
+		return userRepository.save(user);
+	}
+	
 	public com.example.demo.entity.User register(com.example.demo.entity.User user) {
 		user.setPassword(passwordEncoder().encode(user.getPassword()));
 		user.setEnabled(true);
@@ -44,7 +53,6 @@ public class UserService implements UserDetailsService {
 		com.example.demo.entity.User usuario = userRepository.findByUsername(username);
 
 		UserBuilder builder = null;
-
 		if (usuario != null) {
 			builder = User.withUsername(username);
 			builder.disabled(false);
@@ -60,4 +68,42 @@ public class UserService implements UserDetailsService {
 		return userRepository.findByUsername(username);
 	}
 	
+	public com.example.demo.entity.User findUserId(int id) {
+		return userRepository.findById(id);
+	}
+	
+	public int activate(String username) {
+		int a=0;
+		com.example.demo.entity.User u=userRepository.findByUsername(username);
+		com.example.demo.entity.User user=new com.example.demo.entity.User();
+		
+		user.setPassword(passwordEncoder().encode(u.getPassword()));
+		user.setUsername(u.getUsername());
+		user.setId(u.getId());
+		
+		if(u.isEnabled()==false) {
+			user.setEnabled(true);
+			a=1;
+		}else {
+			user.setEnabled(false);
+			a=0;
+		}
+		user.setRole(u.getRole());
+		
+		userRepository.save(user);
+		return a;
+	}
+	
+	public void deleteUser(String username) throws Exception {
+		com.example.demo.entity.User u = userRepository.findByUsername(username);
+		userRepository.delete(u);
+	}
+	
+	public List<com.example.demo.entity.User> listAllUsuarios() {
+		return userRepository.findAll().stream().collect(Collectors.toList());
+	}
+	
+	public com.example.demo.entity.User updateUser(com.example.demo.entity.User user) {
+		return userRepository.save(user);
+	}
 }
