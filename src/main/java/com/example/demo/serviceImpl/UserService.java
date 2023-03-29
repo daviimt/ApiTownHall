@@ -74,12 +74,19 @@ public class UserService implements UserDetailsService {
 	
 	public int activate(String username) {
 		int a=0;
+		System.out.println(username);
 		com.example.demo.entity.User u=userRepository.findByUsername(username);
 		com.example.demo.entity.User user=new com.example.demo.entity.User();
-		
-		user.setPassword(passwordEncoder().encode(u.getPassword()));
-		user.setUsername(u.getUsername());
+		System.out.println(u);
 		user.setId(u.getId());
+		user.setUsername(u.getUsername());
+		user.setPassword(passwordEncoder().encode(u.getPassword()));
+		user.setDni(u.getDni());
+		user.setName(u.getName());
+		user.setSurname(u.getSurname());
+		user.setRole(u.getRole());
+		user.setId_department(u.getId());
+		user.setAppointmentsList(u.getAppointmentsList());
 		
 		if(u.isEnabled()==false) {
 			user.setEnabled(true);
@@ -88,7 +95,6 @@ public class UserService implements UserDetailsService {
 			user.setEnabled(false);
 			a=0;
 		}
-		user.setRole(u.getRole());
 		
 		userRepository.save(user);
 		return a;
