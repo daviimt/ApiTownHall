@@ -16,7 +16,7 @@ public class Department {
 	private String name;
 	private int description;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id_department")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idDepartment")
 	private List<Appointment> appointmentsList;
 	
 	public Department() {

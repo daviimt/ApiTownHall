@@ -15,11 +15,11 @@ public class AppointmentDTO {
 
 	private int id;
 
-	private int id_user;
+	private int idUser;
 
-	private int id_manager;
+	private int idManager;
 
-	private int id_department;
+	private int idDepartment;
 
 	private String hour;
 	private Date date;
@@ -28,12 +28,11 @@ public class AppointmentDTO {
 		super();
 	}
 
-	public AppointmentDTO(int id, int id_user, int id_manager, int id_department, String hour, Date date) {
-		super();
+	public AppointmentDTO(int id, int idUser, int idManager, int idDepartment, String hour, Date date) {
 		this.id = id;
-		this.id_user = id_user;
-		this.id_manager = id_manager;
-		this.id_department = id_department;
+		this.idUser = idUser;
+		this.idManager = idManager;
+		this.idDepartment = idDepartment;
 		this.hour = hour;
 		this.date = date;
 	}
@@ -46,28 +45,28 @@ public class AppointmentDTO {
 		this.id = id;
 	}
 
-	public int getId_user() {
-		return id_user;
+	public int getIdUser() {
+		return idUser;
 	}
 
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
 	}
 
-	public int getId_manager() {
-		return id_manager;
+	public int getIdManager() {
+		return idManager;
 	}
 
-	public void setId_manager(int id_manager) {
-		this.id_manager = id_manager;
+	public void setIdManager(int idManager) {
+		this.idManager = idManager;
 	}
 
-	public int getId_department() {
-		return id_department;
+	public int getIdDepartment() {
+		return idDepartment;
 	}
 
-	public void setId_department(int id_department) {
-		this.id_department = id_department;
+	public void setIdDepartment(int idDepartment) {
+		this.idDepartment = idDepartment;
 	}
 
 	public String getHour() {
@@ -88,8 +87,13 @@ public class AppointmentDTO {
 
 	@Override
 	public String toString() {
-		return "AppointmentDTO [id=" + id + ", id_user=" + id_user + ", id_manager=" + id_manager + ", id_department="
-				+ id_department + ", hour=" + hour + ", date=" + date + "]";
+		return "AppointmentDTO{" +
+				"id=" + id +
+				", idUser=" + idUser +
+				", idManager=" + idManager +
+				", idDepartment=" + idDepartment +
+				", hour='" + hour + '\'' +
+				", date=" + date +
+				'}';
 	}
-
 }

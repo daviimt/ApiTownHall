@@ -18,35 +18,35 @@ public class Appointment {
 	private int id;
 
 	@ManyToOne
-	@JoinColumn(name = "id_user")
-	private User id_user;
+	@JoinColumn(name = "idUser")
+	private User idUser;
 
 	@ManyToOne
-	@JoinColumn(name = "id_manager")
-	private User id_manager;
+	@JoinColumn(name = "idManager")
+	private User idManager;
 
 	@ManyToOne
-	@JoinColumn(name = "id_department")
-	private Department id_department;
+	@JoinColumn(name = "idDepartment")
+	private Department idDepartment;
 
 	private String hour;
 	private Date date;
 	
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "id_appointment")
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "idAppointment")
 	private Report report;
 
 	public Appointment() {
 		super();
 	}
 
-	public Appointment(int id, User id_user, User id_manager, Department id_department, String hour, Date date) {
-		super();
+	public Appointment(int id, User idUser, User idManager, Department idDepartment, String hour, Date date, Report report) {
 		this.id = id;
-		this.id_user = id_user;
-		this.id_manager = id_manager;
-		this.id_department = id_department;
+		this.idUser = idUser;
+		this.idManager = idManager;
+		this.idDepartment = idDepartment;
 		this.hour = hour;
 		this.date = date;
+		this.report = report;
 	}
 
 	public int getId() {
@@ -57,28 +57,28 @@ public class Appointment {
 		this.id = id;
 	}
 
-	public User getId_user() {
-		return id_user;
+	public User getIdUser() {
+		return idUser;
 	}
 
-	public void setId_user(User id_user) {
-		this.id_user = id_user;
+	public void setIdUser(User idUser) {
+		this.idUser = idUser;
 	}
 
-	public User getId_manager() {
-		return id_manager;
+	public User getIdManager() {
+		return idManager;
 	}
 
-	public void setId_manager(User id_manager) {
-		this.id_manager = id_manager;
+	public void setIdManager(User idManager) {
+		this.idManager = idManager;
 	}
 
-	public Department getId_department() {
-		return id_department;
+	public Department getIdDepartment() {
+		return idDepartment;
 	}
 
-	public void setId_department(Department id_department) {
-		this.id_department = id_department;
+	public void setIdDepartment(Department idDepartment) {
+		this.idDepartment = idDepartment;
 	}
 
 	public String getHour() {
@@ -97,10 +97,24 @@ public class Appointment {
 		this.date = date;
 	}
 
-	@Override
-	public String toString() {
-		return "Appointment [id=" + id + ", id_user=" + id_user + ", id_manager=" + id_manager + ", id_department="
-				+ id_department + ", hour=" + hour + ", date=" + date + "]";
+	public Report getReport() {
+		return report;
 	}
 
+	public void setReport(Report report) {
+		this.report = report;
+	}
+
+	@Override
+	public String toString() {
+		return "Appointment{" +
+				"id=" + id +
+				", idUser=" + idUser +
+				", idManager=" + idManager +
+				", idDepartment=" + idDepartment +
+				", hour='" + hour + '\'' +
+				", date=" + date +
+				", report=" + report +
+				'}';
+	}
 }

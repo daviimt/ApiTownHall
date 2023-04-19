@@ -18,18 +18,14 @@ public class User {
 	private boolean enabled;
 	private String role;
 	private String token;
-	private int id_department;
+	private int idDepartment;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id_user")
-	private List<AppointmentDTO> appointmentsList;
 
 	public User() {
 		super();
 	}
 
-	public User(int id, String username, String password, String name, String surname, String dni, boolean enabled,
-			String role, String token, int id_department, List<AppointmentDTO> appointmentsList) {
-		super();
+	public User(int id, String username, String password, String name, String surname, String dni, boolean enabled, String role, String token, int idDepartment) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -39,23 +35,8 @@ public class User {
 		this.enabled = enabled;
 		this.role = role;
 		this.token = token;
-		this.id_department = id_department;
-		this.appointmentsList = appointmentsList;
-	}
+		this.idDepartment = idDepartment;
 
-	public User(int id, String username, String password, String name, String surname, String dni, boolean enabled,
-			String role, String token, int id_department) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.name = name;
-		this.surname = surname;
-		this.dni = dni;
-		this.enabled = enabled;
-		this.role = role;
-		this.token = token;
-		this.id_department = id_department;
 	}
 
 	public int getId() {
@@ -106,14 +87,6 @@ public class User {
 		this.dni = dni;
 	}
 
-	public List<AppointmentDTO> getAppointmentsList() {
-		return appointmentsList;
-	}
-
-	public void setAppointmentsList(List<AppointmentDTO> appointmentsList) {
-		this.appointmentsList = appointmentsList;
-	}
-
 	public boolean isEnabled() {
 		return enabled;
 	}
@@ -138,18 +111,27 @@ public class User {
 		this.token = token;
 	}
 
-	public int getId_department() {
-		return id_department;
+	public int getIdDepartment() {
+		return idDepartment;
 	}
 
-	public void setId_department(int id_department) {
-		this.id_department = id_department;
+	public void setIdDepartment(int idDepartment) {
+		this.idDepartment = idDepartment;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
-				+ ", role=" + role + ", token=" + token + ", id_department=" + id_department + "]";
+		return "User{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", name='" + name + '\'' +
+				", surname='" + surname + '\'' +
+				", dni='" + dni + '\'' +
+				", enabled=" + enabled +
+				", role='" + role + '\'' +
+				", token='" + token + '\'' +
+				", idDepartment=" + idDepartment +
+				'}';
 	}
-
 }

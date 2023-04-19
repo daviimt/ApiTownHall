@@ -24,7 +24,7 @@ public class User {
 	private String token;
 	private int id_department;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "id_user")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
 	private List<Appointment> appointmentsList;
 
 	public User() {

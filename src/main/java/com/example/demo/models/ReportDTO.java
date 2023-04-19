@@ -12,18 +12,17 @@ public class ReportDTO {
 
 	private String data;
 	private boolean resolution;
-	private int id_appointment;
+	private int idAppointment;
 
 	public ReportDTO() {
 		super();
 	}
 
-	public ReportDTO(int id, String data, boolean resolution, int id_appointment) {
-		super();
+	public ReportDTO(int id, String data, boolean resolution, int idAppointment) {
 		this.id = id;
 		this.data = data;
 		this.resolution = resolution;
-		this.id_appointment = id_appointment;
+		this.idAppointment = idAppointment;
 	}
 
 	public int getId() {
@@ -50,12 +49,21 @@ public class ReportDTO {
 		this.resolution = resolution;
 	}
 
-	public int getId_appointment() {
-		return id_appointment;
+	public int getIdAppointment() {
+		return idAppointment;
 	}
 
-	public void setId_appointment(int id_appointment) {
-		this.id_appointment = id_appointment;
+	public void setIdAppointment(int idAppointment) {
+		this.idAppointment = idAppointment;
 	}
 
+	@Override
+	public String toString() {
+		return "ReportDTO{" +
+				"id=" + id +
+				", data='" + data + '\'' +
+				", resolution=" + resolution +
+				", idAppointment=" + idAppointment +
+				'}';
+	}
 }

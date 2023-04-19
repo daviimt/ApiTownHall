@@ -8,65 +8,67 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class Report {
-	@Id
-	@GeneratedValue
-	private int id;
+    @Id
+    @GeneratedValue
+    private int id;
 
-	@OneToOne
-	@JoinColumn(name = "id_appointment")
-	private Appointment id_appointment;
+    @OneToOne
+    @JoinColumn(name = "idAppointment")
+    private Appointment idAppointment;
 
-	private String data;
-	private boolean resolution;
+    private String data;
+    private boolean resolution;
 
-	public Report() {
-		super();
-	}
+    public Report() {
+        super();
+    }
 
-	public Report(int id, Appointment id_appointment, String data, boolean resolution) {
-		super();
-		this.id = id;
-		this.id_appointment = id_appointment;
-		this.data = data;
-		this.resolution = resolution;
-	}
+    public Report(int id, Appointment idAppointment, String data, boolean resolution) {
+        this.id = id;
+        this.idAppointment = idAppointment;
+        this.data = data;
+        this.resolution = resolution;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public Appointment getId_appointment() {
-		return id_appointment;
-	}
+    public Appointment getIdAppointment() {
+        return idAppointment;
+    }
 
-	public void setId_appointment(Appointment id_appointment) {
-		this.id_appointment = id_appointment;
-	}
+    public void setIdAppointment(Appointment idAppointment) {
+        this.idAppointment = idAppointment;
+    }
 
-	public String getData() {
-		return data;
-	}
+    public String getData() {
+        return data;
+    }
 
-	public void setData(String data) {
-		this.data = data;
-	}
+    public void setData(String data) {
+        this.data = data;
+    }
 
-	public boolean isResolution() {
-		return resolution;
-	}
+    public boolean isResolution() {
+        return resolution;
+    }
 
-	public void setResolution(boolean resolution) {
-		this.resolution = resolution;
-	}
+    public void setResolution(boolean resolution) {
+        this.resolution = resolution;
+    }
 
-	@Override
-	public String toString() {
-		return "Report [id=" + id + ", id_appointment=" + id_appointment + ", data=" + data + ", resolution="
-				+ resolution + "]";
-	}
-
+    @Override
+    public String toString() {
+        return "Report{" +
+                "id=" + id +
+                ", idAppointment=" + idAppointment +
+                ", data='" + data + '\'' +
+                ", resolution=" + resolution +
+                '}';
+    }
 }
