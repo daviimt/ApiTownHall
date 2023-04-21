@@ -38,4 +38,33 @@ public class RestAppointment {
             return ResponseEntity.noContent().build();
 
     }
+
+    @GetMapping("/manager/appointments{idManager}")
+    public ResponseEntity<?> getAppointmentsManager(@PathVariable int idManager) {
+        boolean exist = appointmentService.findCAppointmentByIdManager(idManager)!=null;
+        if(exist) {
+            List<AppointmentDTO> appointments=appointmentService.findCAppointmentByIdManager(idManager);
+            return ResponseEntity.ok(appointments);
+        }
+        else
+            return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/user/appointment")
+    public ResponseEntity<?> updateAppointmentNew (@RequestBody AppointmentDTO appointmentDTO)
+    {
+        appointmentService.addAppointment(appointmentDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(appointmentDTO);
+
+    }
+
+    @DeleteMapping("/all/appointment/{idAppointment}")
+    public ResponseEntity<?> deleteAppointment(@PathVariable int idAppointment)
+    {
+        boolean exists = appointmentService.removeAppointment(idAppointment);
+        if(exists)
+            return ResponseEntity.ok().build();
+        else
+            return ResponseEntity.noContent().build();
+    }
 }

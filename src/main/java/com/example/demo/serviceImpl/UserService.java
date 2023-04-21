@@ -85,7 +85,7 @@ public class UserService implements UserDetailsService {
 		user.setName(u.getName());
 		user.setSurname(u.getSurname());
 		user.setRole(u.getRole());
-		user.setId_department(u.getId());
+		user.setIdDepartment(u.getId());
 		user.setAppointmentsList(u.getAppointmentsList());
 		
 		if(u.isEnabled()==false) {
