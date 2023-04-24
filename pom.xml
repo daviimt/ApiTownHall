@@ -97,6 +97,8 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+<!-- Swagger -->
+
 	</dependencies>
 
 	<build>
