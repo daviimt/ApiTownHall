@@ -15,22 +15,22 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 public class SecurityConfig {
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-		http.csrf().disable().addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
-				.authorizeHttpRequests((requests) -> requests.requestMatchers("/users/listUsers").hasRole("ROLE_ADMIN").requestMatchers("/api/admin/**").hasRole("ADMIN")
-						.requestMatchers("/api/user/**").hasRole("ROLE_USER").requestMatchers("/api/all/**")
-						.hasAnyRole("ROLE_ADMIN", "ROLE_USER").requestMatchers("/**").permitAll().anyRequest().authenticated())
-				.formLogin((form) -> form.loginPage("/auth/login").defaultSuccessUrl("/users/listUsers").permitAll())
-				.logout((logout) -> logout.permitAll().logoutUrl("/auth/logout")
-						.logoutSuccessUrl("/auth/login?logout"));
-		return http.build();
-	}
+        http.csrf().disable().addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .authorizeHttpRequests((requests) -> requests.requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/user/**").hasRole("USER").requestMatchers("/api/manager/**").hasRole("MANAGER").requestMatchers("/api/all/**")
+                        .hasAnyRole("ADMIN", "USER","MANAGER").requestMatchers("/**").permitAll().anyRequest().authenticated())
+                .formLogin((form) -> form.loginPage("/auth/login").defaultSuccessUrl("/users/listUsers").permitAll())
+                .logout((logout) -> logout.permitAll().logoutUrl("/auth/logout")
+                        .logoutSuccessUrl("/auth/login?logout"));
+        return http.build();
+    }
 
-	@Bean
-	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
-			throws Exception {
-		return authenticationConfiguration.getAuthenticationManager();
-	}
+    @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+            throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
 }

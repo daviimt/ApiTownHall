@@ -1,9 +1,12 @@
 package com.example.demo.serviceImpl;
 
 import com.example.demo.entity.Appointment;
+import com.example.demo.entity.Department;
+import com.example.demo.entity.User;
 import com.example.demo.models.AppointmentDTO;
 import com.example.demo.repository.AppointmentRepository;
 import com.example.demo.service.AppointmentService;
+import com.example.demo.service.DepartmentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,6 +21,14 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Autowired
     @Qualifier("appointmentRepository")
     private AppointmentRepository appointmentRepository;
+
+    @Autowired
+    @Qualifier("userService")
+    private UserService userService;
+
+    @Autowired
+    @Qualifier("departmentService")
+    private DepartmentService departmentService;
 
     @Override
     public AppointmentDTO addAppointment(AppointmentDTO appointmentDTO) {
@@ -38,13 +49,15 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public List<AppointmentDTO> findCAppointmentByIdManager(int id) {
-        return appointmentRepository.findByIdManager(id).stream().map(a -> transform(a)).collect(Collectors.toList());
+    public List<AppointmentDTO> findAppointmentByIdManager(int idManager) {
+        User us = userService.findUserId(idManager);
+        return appointmentRepository.findByIdManager(us).stream().map(a -> transform(a)).collect(Collectors.toList());
     }
 
     @Override
-    public List<AppointmentDTO> findCAppointmentByIdDepartment(int id) {
-        return appointmentRepository.findByIdDepartment(id).stream().map(a -> transform(a)).collect(Collectors.toList());
+    public List<AppointmentDTO> findAppointmentByIdDepartment(int idDepartment) {
+        Department dep = departmentService.findDepartmentById(idDepartment);
+        return appointmentRepository.findByIdDepartment(dep).stream().map(a -> transform(a)).collect(Collectors.toList());
     }
 
     @Override

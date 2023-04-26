@@ -29,11 +29,12 @@ public class RestAppointment {
             return ResponseEntity.noContent().build();
 
     }
-    @GetMapping("/manager/appointments{idManager}")
-    public ResponseEntity<?> getAppointmentsManager(@PathVariable int idManager) {
-        boolean exist = appointmentService.findCAppointmentByIdManager(idManager)!=null;
+    @GetMapping("/manager/appointments/{id}")
+    public ResponseEntity<?> getAppointmentsManager(@PathVariable int id) {
+
+        boolean exist = appointmentService.findAppointmentById(id)==null;
         if(exist) {
-            List<AppointmentDTO> appointments=appointmentService.findCAppointmentByIdManager(idManager);
+            List<AppointmentDTO> appointments=appointmentService.findAppointmentByIdManager(id);
             return ResponseEntity.ok(appointments);
         }
         else

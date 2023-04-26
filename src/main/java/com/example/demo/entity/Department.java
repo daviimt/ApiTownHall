@@ -16,7 +16,7 @@ public class Department {
 	@GeneratedValue
 	private int id;
 	private String name;
-	private int description;
+	private String description;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idDepartment")
 	private List<Appointment> appointmentsList;
