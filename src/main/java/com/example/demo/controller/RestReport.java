@@ -31,7 +31,7 @@ public class RestReport {
             return ResponseEntity.noContent().build();
 
     }
-    @GetMapping("/manager/reports{idAppointment}")
+    @GetMapping("/manager/reports/{idAppointment}")
     public ResponseEntity<?> getReportsAppointment(@PathVariable int idAppointment) {
         boolean exist = reportService.findReportByIdAppointment(idAppointment)!=null;
         if(exist) {

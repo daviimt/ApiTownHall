@@ -41,7 +41,7 @@ public class RestAppointment {
             return ResponseEntity.noContent().build();
     }
     @PostMapping("/user/appointment")
-    public ResponseEntity<?> insertCategoryNew (@RequestBody AppointmentDTO appointmentDTO)
+    public ResponseEntity<?> insertAppointmentNew (@RequestBody AppointmentDTO appointmentDTO)
     {
         appointmentService.addAppointment(appointmentDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(appointmentDTO);

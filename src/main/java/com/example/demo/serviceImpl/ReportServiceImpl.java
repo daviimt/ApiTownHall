@@ -4,7 +4,9 @@ import com.example.demo.entity.Appointment;
 import com.example.demo.entity.Report;
 import com.example.demo.models.AppointmentDTO;
 import com.example.demo.models.ReportDTO;
+import com.example.demo.repository.AppointmentRepository;
 import com.example.demo.repository.ReportRepository;
+import com.example.demo.service.AppointmentService;
 import com.example.demo.service.ReportService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,10 @@ public class ReportServiceImpl implements ReportService {
     @Autowired
     @Qualifier("reportRepository")
     private ReportRepository reportRepository;
+
+    @Autowired
+    @Qualifier("appointmentService")
+    private AppointmentService appointmentService;
 
     @Override
     public ReportDTO addReport(ReportDTO reportDTO) {
@@ -40,7 +46,8 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public List<ReportDTO> findReportByIdAppointment(int id) {
-        return reportRepository.findByIdAppointment(id).stream().map(r -> transform(r)).collect(Collectors.toList());
+        Appointment ap=appointmentService.findAppointmentById(id);
+        return reportRepository.findByIdAppointment(ap).stream().map(r -> transform(r)).collect(Collectors.toList());
     }
 
     @Override
