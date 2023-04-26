@@ -30,5 +30,5 @@ public class User {
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
 	private List<Appointment> appointmentsList;
-	
+
 }

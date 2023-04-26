@@ -41,7 +41,7 @@ public class RestReport {
         else
             return ResponseEntity.noContent().build();
     }
-    @PostMapping("/user/report")
+    @PostMapping("/manager/report")
     public ResponseEntity<?> insertReportNew (@RequestBody ReportDTO reportDTO)
     {
         reportService.addReport(reportDTO);
@@ -50,7 +50,7 @@ public class RestReport {
     }
 
 
-    @PutMapping("/user/report")
+    @PutMapping("/manager/report")
     public ResponseEntity<?> updateReportNew (@RequestBody ReportDTO reportDTO)
     {
         reportService.addReport(reportDTO);
@@ -58,7 +58,7 @@ public class RestReport {
 
     }
 
-    @DeleteMapping("/all/report/{idReport}")
+    @DeleteMapping("/manager/report/{idReport}")
     public ResponseEntity<?> deleteReport(@PathVariable int idReport)
     {
         boolean exists = reportService.removeReport(idReport);
