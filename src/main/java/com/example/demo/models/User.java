@@ -21,7 +21,4 @@ public class User {
 	private String role;
 	private String token;
 	private int idDepartment;
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
-	private List<AppointmentDTO> appointmentsList;
 }
