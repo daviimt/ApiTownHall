@@ -31,4 +31,8 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
 	private List<Appointment> appointmentsList;
 
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idManager")
+	private List<Appointment> appointmentsListManager;
+
 }
