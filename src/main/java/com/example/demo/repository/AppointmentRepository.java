@@ -14,5 +14,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Serial
     public abstract Appointment findById(int id);
     public abstract List<Appointment> findByIdDepartment(Department department);
     public abstract List<Appointment> findByIdManager(User manager);
+    public abstract List<Appointment> findByIdUser(User manager);
 
 }

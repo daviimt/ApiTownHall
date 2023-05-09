@@ -13,6 +13,8 @@ public interface AppointmentService {
     public abstract List<AppointmentDTO> listAllAppointments();
     public abstract Appointment findAppointmentById(int id);
     public abstract List<AppointmentDTO> findAppointmentByIdManager(int idManager);
+
+    public abstract List<AppointmentDTO> findAppointmentByIdUser(int idManager);
     public abstract List<AppointmentDTO> findAppointmentByIdDepartment(int idDepartment);
     public abstract boolean removeAppointment(int id);
     public abstract Appointment transform(AppointmentDTO categoryDTO);

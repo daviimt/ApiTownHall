@@ -22,8 +22,8 @@ public class RestAppointment {
     public ResponseEntity<?> getAppointments() {
         boolean exist = appointmentService.listAllAppointments()!=null;
         if(exist) {
-            List<AppointmentDTO> product=appointmentService.listAllAppointments();
-            return ResponseEntity.ok(product);
+            List<AppointmentDTO> appointments=appointmentService.listAllAppointments();
+            return ResponseEntity.ok(appointments);
         }
         else
             return ResponseEntity.noContent().build();
@@ -33,13 +33,29 @@ public class RestAppointment {
     public ResponseEntity<?> getAppointmentsManager(@PathVariable int id) {
 
         boolean exist = appointmentService.findAppointmentById(id)==null;
+        System.out.println(exist);
         if(exist) {
             List<AppointmentDTO> appointments=appointmentService.findAppointmentByIdManager(id);
+            System.out.println(appointments);
             return ResponseEntity.ok(appointments);
         }
         else
             return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/user/appointments/{id}")
+    public ResponseEntity<?> getAppointmentsUser(@PathVariable int id) {
+
+        boolean exist = appointmentService.findAppointmentById(id)==null;
+        System.out.println(exist);
+        if(exist) {
+            List<AppointmentDTO> appointments=appointmentService.findAppointmentByIdUser(id);
+            return ResponseEntity.ok(appointments);
+        }
+        else
+            return ResponseEntity.noContent().build();
+    }
+
     @PostMapping("/user/appointment")
     public ResponseEntity<?> insertAppointmentNew (@RequestBody AppointmentDTO appointmentDTO)
     {

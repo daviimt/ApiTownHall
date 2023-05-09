@@ -55,6 +55,12 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
+    public List<AppointmentDTO> findAppointmentByIdUser(int idUser) {
+        User us = userService.findUserId(idUser);
+        return appointmentRepository.findByIdUser(us).stream().map(a -> transform(a)).collect(Collectors.toList());
+    }
+
+    @Override
     public List<AppointmentDTO> findAppointmentByIdDepartment(int idDepartment) {
         Department dep = departmentService.findDepartmentById(idDepartment);
         return appointmentRepository.findByIdDepartment(dep).stream().map(a -> transform(a)).collect(Collectors.toList());
