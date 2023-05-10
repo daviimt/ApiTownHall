@@ -4,18 +4,17 @@ import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.example.demo.models.AppointmentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.entity.User;
 import com.example.demo.serviceImpl.UserService;
@@ -65,4 +64,22 @@ public class UserController {
 
 		return "Bearer " + token;
 	}
+
+	@PutMapping("/update")
+	private User updateUser(@RequestBody User user) {
+		return userService.register(user);
+	}
+
+	@GetMapping("/all/{id}")
+	private ResponseEntity<?> getUser(@PathVariable int id) {
+		boolean exist = userService.findUserId(id)!=null;
+		System.out.println(exist);
+		if(exist) {
+			User user=userService.findUserId(id);
+			return ResponseEntity.ok(user);
+		}
+		else
+			return ResponseEntity.noContent().build();
+	}
+
 }
