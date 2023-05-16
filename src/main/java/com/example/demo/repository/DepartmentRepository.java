@@ -9,6 +9,5 @@ import java.io.Serializable;
 
 @Repository("departmentRepository")
 public interface DepartmentRepository extends JpaRepository<Department, Serializable> {
-
     public abstract Department findById(int id);
 }

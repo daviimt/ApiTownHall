@@ -33,7 +33,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Department findDepartmentById(int id) {
-        System.out.println(departmentRepository.findById(id));
+        System.out.println(departmentRepository.getOne(id));
         return departmentRepository.findById(id);
     }
 
