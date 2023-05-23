@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Report;
 import com.example.demo.models.AppointmentDTO;
 import com.example.demo.models.ReportDTO;
 import com.example.demo.service.AppointmentService;
@@ -41,6 +42,18 @@ public class RestReport {
         else
             return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/manager/report/{idReport}")
+    public ResponseEntity<?> getReport(@PathVariable int idReport) {
+        boolean exist = reportService.findReportById(idReport)!=null;
+        if(exist) {
+            Report report=reportService.findReportById(idReport);
+            return ResponseEntity.ok(report);
+        }
+        else
+            return ResponseEntity.noContent().build();
+    }
+
     @PostMapping("/manager/report")
     public ResponseEntity<?> insertReportNew (@RequestBody ReportDTO reportDTO)
     {
@@ -62,8 +75,11 @@ public class RestReport {
     public ResponseEntity<?> deleteReport(@PathVariable int idReport)
     {
         boolean exists = reportService.removeReport(idReport);
-        if(exists)
+        System.out.println("existe"+exists);
+        if(exists) {
+            reportService.removeReport(idReport);
             return ResponseEntity.ok().build();
+        }
         else
             return ResponseEntity.noContent().build();
     }

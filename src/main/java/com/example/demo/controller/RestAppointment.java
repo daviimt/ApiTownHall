@@ -32,7 +32,7 @@ public class RestAppointment {
     @GetMapping("/manager/appointments/{id}")
     public ResponseEntity<?> getAppointmentsManager(@PathVariable int id) {
 
-        boolean exist = appointmentService.findAppointmentById(id)!=null;
+        boolean exist = appointmentService.findAppointmentById(id)==null;
         System.out.println(exist);
         if(exist) {
             List<AppointmentDTO> appointments=appointmentService.findAppointmentByIdManager(id);

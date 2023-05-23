@@ -52,7 +52,9 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public boolean removeReport(int id) {
+        System.out.println(id);
         if(reportRepository.findById(id)!=null) {
+            System.out.println("entra");
             reportRepository.deleteById(id);
             return true;
         }
