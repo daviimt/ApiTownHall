@@ -84,5 +84,16 @@ public class UserController {
 		else
 			return ResponseEntity.noContent().build();
 	}
+	@GetMapping("/manager/managers")
+	private ResponseEntity<?> getManagers() {
+		boolean exist = userService.listAllManagers()!=null;
+		System.out.println(exist);
+		if(exist) {
+			List<User> managers=userService.listAllManagers();
+			return ResponseEntity.ok(managers);
+		}
+		else
+			return ResponseEntity.noContent().build();
+	}
 
 }

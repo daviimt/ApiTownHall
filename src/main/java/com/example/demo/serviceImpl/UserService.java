@@ -108,6 +108,10 @@ public class UserService implements UserDetailsService {
 	public List<com.example.demo.entity.User> listAllUsuarios() {
 		return userRepository.findAll().stream().collect(Collectors.toList());
 	}
+
+	public List<com.example.demo.entity.User> listAllManagers() {
+		return userRepository.findAll().stream().filter(x->x.getRole().equals("ROLE_MANAGER")).collect(Collectors.toList());
+	}
 	
 	public com.example.demo.entity.User updateUser(com.example.demo.entity.User user) {
 		return userRepository.save(user);
