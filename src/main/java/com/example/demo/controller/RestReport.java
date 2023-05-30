@@ -77,7 +77,6 @@ public class RestReport {
         boolean exists = reportService.removeReport(idReport);
         System.out.println("existe"+exists);
         if(exists) {
-            reportService.removeReport(idReport);
             return ResponseEntity.ok().build();
         }
         else
