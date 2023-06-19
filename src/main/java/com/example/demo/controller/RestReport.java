@@ -5,6 +5,7 @@ import com.example.demo.models.AppointmentDTO;
 import com.example.demo.models.ReportDTO;
 import com.example.demo.service.AppointmentService;
 import com.example.demo.service.ReportService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -70,12 +71,12 @@ public class RestReport {
         return ResponseEntity.status(HttpStatus.CREATED).body(reportDTO);
 
     }
-
+    @Transactional
     @DeleteMapping("/manager/report/{idReport}")
     public ResponseEntity<?> deleteReport(@PathVariable int idReport)
     {
         boolean exists = reportService.removeReport(idReport);
-        System.out.println("existe"+exists);
+        System.out.println("existe "+exists);
         if(exists) {
             return ResponseEntity.ok().build();
         }

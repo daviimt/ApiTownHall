@@ -55,7 +55,7 @@ public class ReportServiceImpl implements ReportService {
         System.out.println(id);
         if(reportRepository.findById(id)!=null) {
             System.out.println("entra");
-            reportRepository.deleteById(id);
+            reportRepository.deleteReportById(id);
             return true;
         }
         else
